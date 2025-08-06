@@ -14,7 +14,10 @@ Manage vehicles, track maintenance schedules, and automate service reminders.
     'depends': [
         'base',
     ],
-    'data': [],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+    ],
     'demo': [],
     'license': 'LGPL-3',
     'installable': True,
