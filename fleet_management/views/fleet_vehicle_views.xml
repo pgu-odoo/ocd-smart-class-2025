@@ -12,6 +12,7 @@
                <field name="model"/>
                <field name="status"/>
                <field name="odometer_km"/>
+               <field name="driver_id"/>
            </list>
        </field>
     </record>
@@ -38,6 +39,7 @@
                                     <field name="brand" />
                                     <field name="model" />
                                     <field name="license_plate" />
+                                    <field name="driver_id" />
                                 </group>
                                 <group string="Maintenance">
                                     <field name="purchase_date" />

@@ -18,3 +18,8 @@ class FleetVehicle(models.Model):
         ], default='active', readonly=True)
     maintenance_cost = fields.Float()
     image = fields.Image(string="Photo")
+    driver_id = fields.Many2one(
+        'res.partner',
+        string="Driver"
+        )
+    company_id = fields.Many2one('res.company')
