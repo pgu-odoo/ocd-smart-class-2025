@@ -8,7 +8,7 @@ class FleetVehicleRental(models.Model):
 
     name = fields.Char(string="Rental Reference", required=True, copy=False, readonly=True, default=lambda self: 'New')
     vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', required=True)
-    driver_id = fields.Many2one('res.partner', string='Driver/Customer', required=True, domain="[('is_fleet_customer', '=', True)]")
+    driver_id = fields.Many2one('res.partner', string='Driver/Customer', required=True)
     
     start_date = fields.Datetime(
         string="Start Date",
