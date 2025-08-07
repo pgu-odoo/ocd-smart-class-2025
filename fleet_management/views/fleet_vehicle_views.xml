@@ -55,6 +55,11 @@
                                 <field name="tag_ids" editable="bottom"/>
                             </div>
                         </page>
+                        <page string="Rental Order" name="orders">
+                            <div>
+                                <field name="order_ids"/>
+                            </div>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
