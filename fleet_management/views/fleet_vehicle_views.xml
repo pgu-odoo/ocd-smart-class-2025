@@ -55,11 +55,29 @@
     </record>
 
 
+    <!-- Search View -->
+    <record id="view_fleet_vehicle_search" model="ir.ui.view">
+        <field name="name">fleet.vehicle.search</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="arch" type="xml">
+            <search string="Fleet Vehicles">
+                <filter name="name" string="Vehicle Name"/>
+                <filter name="high_mileage" string="High Mileage" domain="[('odometer_km', '>=', 100000)]"/>
+                <field name="name"/>
+                <field name="brand"/>
+                <group expand="0" string="Group By">
+                    <filter string="Brand" name="brand" domain="" context="{'group_by':'brand'}"/>
+                </group>
+            </search>
+        </field>
+     </record>
+
+
     <!-- Windows Action -->
     <record id="action_fleet_vehicle" model="ir.actions.act_window">
         <field name="name">Fleet Vehicles</field>
         <field name="res_model">fleet.vehicle</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,form,search</field>
     </record>
     <!-- Menu -->
     <menuitem id="menu_fleet_management_root" name="Fleet Management" sequence="10" web_icon="fleet_management,static/description/icon.png"/>
