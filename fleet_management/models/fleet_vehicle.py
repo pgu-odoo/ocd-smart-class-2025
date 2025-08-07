@@ -1,4 +1,6 @@
-from odoo import models, fields
+from odoo import api, models, fields
+from datetime import timedelta, date
+
 
 class FleetVehicle(models.Model):
     _name = 'fleet.vehicle'
@@ -25,3 +27,14 @@ class FleetVehicle(models.Model):
     company_id = fields.Many2one('res.company')
     tag_ids = fields.Many2many('fleet.vehicle.tags')
     order_ids = fields.One2many('fleet.vehicle.rental', 'vehicle_id')
+    vehicle_age_years = fields.Float(string='Vehicle Age (Years)', compute='_compute_vehicle_age')
+
+
+    @api.depends('purchase_date')
+    def _compute_vehicle_age(self):
+        for record in self:
+            if record.purchase_date:
+                delta = date.today() - record.purchase_date
+                record.vehicle_age_years = round(delta.days / 365.0, 2)
+            else:
+                record.vehicle_age_years = 0.0
