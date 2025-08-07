@@ -41,6 +41,7 @@
                                     <field name="license_plate" />
                                     <field name="driver_id" />
                                     <field name="vehicle_age_years"/>
+                                    <field name="daily_rate"/>
                                 </group>
                                 <group string="Maintenance">
                                     <field name="purchase_date" />

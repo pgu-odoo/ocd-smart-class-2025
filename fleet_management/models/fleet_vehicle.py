@@ -28,6 +28,7 @@ class FleetVehicle(models.Model):
     tag_ids = fields.Many2many('fleet.vehicle.tags')
     order_ids = fields.One2many('fleet.vehicle.rental', 'vehicle_id')
     vehicle_age_years = fields.Float(string='Vehicle Age (Years)', compute='_compute_vehicle_age')
+    daily_rate = fields.Float(string="Daily Rate")
 
 
     @api.depends('purchase_date')
