@@ -50,6 +50,11 @@
                                 </group>
                             </group>
                         </page>
+                         <page string="Tags" name="tag">
+                            <div>
+                                <field name="tag_ids" editable="bottom"/>
+                            </div>
+                        </page>
                     </notebook>
                 </sheet>
             </form>

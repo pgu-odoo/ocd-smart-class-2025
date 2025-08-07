@@ -23,3 +23,4 @@ class FleetVehicle(models.Model):
         string="Driver"
         )
     company_id = fields.Many2one('res.company')
+    tag_ids = fields.Many2many('fleet.vehicle.tags')
