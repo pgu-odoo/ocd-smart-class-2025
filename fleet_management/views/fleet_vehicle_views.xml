@@ -89,4 +89,5 @@
     <!-- Menu -->
     <menuitem id="menu_fleet_management_root" name="Fleet Management" sequence="10" web_icon="fleet_management,static/description/icon.png"/>
     <menuitem id="menu_fleet_vehicles" name="Fleet Vehicles" parent="menu_fleet_management_root" action="action_fleet_vehicle"/>
+    <menuitem id="fleet_vehicle_rental_menu" name="Rental Orders" parent="menu_fleet_management_root" action="fleet_vehicle_rental_action" sequence="1"/>
 </odoo>
