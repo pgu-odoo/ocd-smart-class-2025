@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+    <record id="view_fleet_vehicle_list" model="ir.ui.view">
+       <field name="name">fleet.vehicle.list</field>
+       <field name="model">fleet.vehicle</field>
+       <field name="arch" type="xml">
+           <list>
+               <field name="name"/>
+               <field name="license_plate"/>
+               <field name="brand"/>
+               <field name="model"/>
+               <field name="status"/>
+               <field name="odometer_km"/>
+           </list>
+       </field>
+    </record>
+    
     <!-- Windows Action -->
     <record id="action_fleet_vehicle" model="ir.actions.act_window">
         <field name="name">Fleet Vehicles</field>
