@@ -17,6 +17,7 @@ Manage vehicles, track maintenance schedules, and automate service reminders.
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        'views/fleet_vehicle_views.xml',
     ],
     'demo': [],
     'license': 'LGPL-3',
