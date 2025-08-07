@@ -15,7 +15,46 @@
            </list>
        </field>
     </record>
-    
+
+    <record id="view_fleet_vehicle_form" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="arch" type="xml">
+            <form string="Fleet Vehicles">
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <span>Vehicle Name</span>
+                            <h1><field name="name" /></h1>
+                        </div>
+                        <group>
+                            <div><field name="image" widget="image" class="oe_avatar" /></div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Information" name="info">
+                            <group>
+                                <group string="Details">
+                                    <field name="brand" />
+                                    <field name="model" />
+                                    <field name="license_plate" />
+                                </group>
+                                <group string="Maintenance">
+                                    <field name="purchase_date" />
+                                    <field name="last_service_date" />
+                                    <field name="service_interval_days" />
+                                    <field name="odometer_km" />
+                                    <field name="maintenance_cost" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
     <!-- Windows Action -->
     <record id="action_fleet_vehicle" model="ir.actions.act_window">
         <field name="name">Fleet Vehicles</field>

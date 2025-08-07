@@ -17,3 +17,4 @@ class FleetVehicle(models.Model):
         ('sold', 'Sold')
         ], default='active', readonly=True)
     maintenance_cost = fields.Float()
+    image = fields.Image(string="Photo")
