@@ -6,6 +6,7 @@ from odoo.exceptions import UserError
 class FleetVehicleRental(models.Model):
     _name = 'fleet.vehicle.rental'
     _description = 'Fleet Vehicle Rental'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'start_date desc'
 
     name = fields.Char(string="Rental Reference", required=True, copy=False, readonly=True, default=lambda self: 'New')

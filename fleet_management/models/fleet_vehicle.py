@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 class FleetVehicle(models.Model):
     _name = 'fleet.vehicle'
     _description = 'Fleet Vehicles'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'id desc'
 
     name = fields.Char(required=True)

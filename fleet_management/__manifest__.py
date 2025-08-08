@@ -13,6 +13,7 @@ Manage vehicles, track maintenance schedules, and automate service reminders.
     'category': 'Operations/Fleet',
     'depends': [
         'base',
+        'mail',
     ],
     'data': [
         'security/security.xml',
