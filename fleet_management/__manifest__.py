@@ -20,6 +20,7 @@ Manage vehicles, track maintenance schedules, and automate service reminders.
         'security/ir.model.access.csv',
         'views/fleet_rental_order.xml',
         'views/fleet_vehicle_views.xml',
+        'views/res_partner_views.xml',
         'data/sequence.xml',
     ],
     'demo': [],
