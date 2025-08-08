@@ -22,11 +22,15 @@
         <field name="model">fleet.vehicle</field>
         <field name="arch" type="xml">
             <form string="Fleet Vehicles">
+                <header>
+                    <field name="status" widget="statusbar"/>
+                </header>
                 <sheet>
                     <group>
                         <div class="oe_title">
                             <span>Vehicle Name</span>
                             <h1><field name="name" /></h1>
+                            <field name="tag_ids" widget="many2many_tags"/>
                         </div>
                         <group>
                             <div><field name="image" widget="image" class="oe_avatar" /></div>
@@ -51,11 +55,6 @@
                                     <field name="maintenance_cost" />
                                 </group>
                             </group>
-                        </page>
-                         <page string="Tags" name="tag">
-                            <div>
-                                <field name="tag_ids" editable="bottom"/>
-                            </div>
                         </page>
                         <page string="Rental Order" name="orders">
                             <div>
