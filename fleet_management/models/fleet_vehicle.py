@@ -1,5 +1,6 @@
 from odoo import api, models, fields
 from datetime import timedelta, date
+from odoo.exceptions import ValidationError
 
 
 class FleetVehicle(models.Model):
@@ -36,6 +37,11 @@ class FleetVehicle(models.Model):
        'The Odometer should be greater than 0.',
     )
 
+    @api.constrains('purchase_date')
+    def _check_purchase_date(self):
+        for record in self:
+            if record.purchase_date and record.purchase_date > fields.Date.today():
+                raise ValidationError("Purchase date cannot be in the future.")
 
     @api.depends('purchase_date')
     def _compute_vehicle_age(self):
