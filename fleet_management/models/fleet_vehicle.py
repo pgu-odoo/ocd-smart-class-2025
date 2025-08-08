@@ -31,6 +31,12 @@ class FleetVehicle(models.Model):
     daily_rate = fields.Float(string="Daily Rate")
 
 
+    _check_percentage = models.Constraint(
+       'CHECK(odometer_km > 0)',
+       'The Odometer should be greater than 0.',
+    )
+
+
     @api.depends('purchase_date')
     def _compute_vehicle_age(self):
         for record in self:
