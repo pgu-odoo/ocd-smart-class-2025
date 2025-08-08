@@ -52,3 +52,12 @@ class FleetVehicle(models.Model):
                 record.vehicle_age_years = round(delta.days / 365.0, 2)
             else:
                 record.vehicle_age_years = 0.0
+
+    def action_open_related_orders(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Rental Orders',
+            'res_model': 'fleet.vehicle.rental',
+            'view_mode': 'list,form',
+            'domain': [('vehicle_id', '=', self.id)],
+        }
