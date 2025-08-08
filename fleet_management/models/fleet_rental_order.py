@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from datetime import datetime, timedelta
+from odoo.exceptions import UserError
 
 
 class FleetVehicleRental(models.Model):
@@ -52,6 +53,12 @@ class FleetVehicleRental(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('fleet.vehicle.rental') or 'New'
         return super().create(vals_list)
     
+    def unlink(self):
+        for record in self:
+            if record.state in ['rented', 'returned']:
+                raise UserError("You cannot delete a record that is in 'Rented' or 'Returned' state.")
+        return super().unlink()
+
     def action_confirm(self):
         for record in self:
             record.state = 'rented'
