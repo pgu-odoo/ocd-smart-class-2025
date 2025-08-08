@@ -52,3 +52,14 @@ class FleetVehicleRental(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('fleet.vehicle.rental') or 'New'
         return super().create(vals_list)
     
+    def action_confirm(self):
+        for record in self:
+            record.state = 'rented'
+
+    def action_cancel(self):
+        for record in self:
+            record.state = 'cancelled'
+
+    def action_return(self):
+        for rec in self:
+            rec.state = 'returned'
