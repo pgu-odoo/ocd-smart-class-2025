@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_fleet_vehicle_sale_wizard_form" model="ir.ui.view">
+        <field name="name">fleet.vehicle.sale.wizard.form</field>
+        <field name="model">fleet.vehicle.sale.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Mark Vehicles as Sold">
+                <group>
+                    <field name="reason"/>
+                </group>
+                <footer>
+                    <button name="action_mark_as_sold"
+                            string="Confirm"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

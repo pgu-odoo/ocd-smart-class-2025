@@ -23,6 +23,11 @@
         <field name="arch" type="xml">
             <form string="Fleet Vehicles">
                 <header>
+                    <button name="action_mark_sold"
+                        type="object"
+                        string="Mark as Sold"
+                        class="btn-primary"
+                        invisible="status == 'sold'"/>
                     <field name="status" widget="statusbar"/>
                 </header>
                 <sheet>

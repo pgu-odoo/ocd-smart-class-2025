@@ -62,3 +62,15 @@ class FleetVehicle(models.Model):
             'view_mode': 'list,form',
             'domain': [('vehicle_id', '=', self.id)],
         }
+
+    def action_mark_sold(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'fleet.vehicle.sale.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_sale_date': fields.Date.today(),
+                'active_ids': self.ids,
+            }
+        }
