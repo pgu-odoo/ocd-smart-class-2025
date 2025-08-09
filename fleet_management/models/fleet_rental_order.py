@@ -11,7 +11,9 @@ class FleetVehicleRental(models.Model):
 
     name = fields.Char(string="Rental Reference", required=True, copy=False, readonly=True, default=lambda self: 'New')
     vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', required=True)
-    driver_id = fields.Many2one('res.partner', string='Driver/Customer', required=True)
+    driver_id = fields.Many2one('res.partner', string='Driver', required=True)
+    partner_id = fields.Many2one('res.partner')
+    invoice_id = fields.Many2one('account.move')
     
     start_date = fields.Datetime(
         string="Start Date",
@@ -60,10 +62,6 @@ class FleetVehicleRental(models.Model):
                 raise UserError("You cannot delete a record that is in 'Rented' or 'Returned' state.")
         return super().unlink()
 
-    def action_confirm(self):
-        for record in self:
-            record.state = 'rented'
-
     def action_cancel(self):
         for record in self:
             record.state = 'cancelled'
@@ -71,3 +69,30 @@ class FleetVehicleRental(models.Model):
     def action_return(self):
         for rec in self:
             rec.state = 'returned'
+
+    def action_confirm(self):
+        for record in self:
+            if not record.vehicle_id or not record.cost:
+                raise UserError(_("Vehicle and Cost must be specified before confirmation."))
+
+            invoice_vals = {
+                'move_type': 'out_invoice',
+                'partner_id': record.partner_id.id,
+                'invoice_origin': record.name,
+                'invoice_line_ids': [(0, 0, {
+                    'name': record.vehicle_id.name or 'Rental Vehicle',
+                    # 'product_id': record.vehicle_id.product_id.id if record.vehicle_id.product_id else False,
+                    'quantity': 1,
+                    'price_unit': record.cost,
+                })],
+            }
+            invoice = self.env['account.move'].create(invoice_vals)
+
+            # Optional: Post the invoice
+            invoice.action_post()
+
+            # Save the invoice reference
+            record.invoice_id = invoice.id
+
+            # Update state
+            record.state = 'rented'

@@ -14,6 +14,7 @@ Manage vehicles, track maintenance schedules, and automate service reminders.
     'depends': [
         'base',
         'mail',
+        'account_accountant'
     ],
     'data': [
         'security/security.xml',
