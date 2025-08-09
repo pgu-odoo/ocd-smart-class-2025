@@ -24,6 +24,7 @@ Manage vehicles, track maintenance schedules, and automate service reminders.
         'views/res_partner_views.xml',
         'data/sequence.xml',
         'wizards/fleet_vehicle_sale_wizard_views.xml',
+        'data/email_template.xml',
     ],
     'demo': [],
     'license': 'LGPL-3',

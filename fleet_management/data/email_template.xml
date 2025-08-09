@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="email_template_vehicle_sold" model="mail.template">
+        <field name="name">Vehicle Sold Notification</field>
+        <field name="model_id" ref="fleet_management.model_fleet_vehicle"/>
+        <field name="subject">Vehicle {{object.name}} has been marked as Sold</field>
+        <field name="email_from">{{user.email}}</field>
+        <field name="email_to">{{user.email}}</field>
+        <field name="body_html" type="html">
+<p>Hello,</p>
+<p>The vehicle <strong><t t-out="object.name"/></strong> has been marked as <strong>Sold</strong>.</p>
+<ul>
+    <li><strong>License Plate:</strong> <t t-out="object.license_plate"/></li>
+    <li><strong>Driver:</strong> <t t-out="object.driver_id.name"/></li>
+    <li><strong>Odometer:</strong> <t t-out="object.odometer_km"/> km</li>
+    <li><strong>Purchase Date:</strong> <t t-out="format_date(object.purchase_date)"/></li>
+</ul>
+<p>Please update any related records if needed.</p>
+<p>Best regards,<br/>Your Fleet Management System</p>
+        </field>
+    </record>
+</odoo>
