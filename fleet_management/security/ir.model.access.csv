@@ -1,5 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-fleet_management.access_fleet_manager,fleet.vehicle_manager,model_fleet_vehicle,,1,1,1,1
+fleet_management.access_fleet_manager,fleet.vehicle_manager,model_fleet_vehicle,group_fleet_manager,1,1,1,1
+fleet_management.access_fleet_driver,fleet.vehicle_driver,model_fleet_vehicle,group_fleet_driver,1,0,0,0
 fleet_management.access_fleet_vehicle_tags,access_fleet_vehicle_tags,fleet_management.model_fleet_vehicle_tags,,1,1,1,1
 fleet_management.access_fleet_vehicle_rental,access_fleet_vehicle_rental,fleet_management.model_fleet_vehicle_rental,base.group_user,1,1,1,1
 fleet_management.access_fleet_vehicle_sale_wizard,access_fleet_vehicle_sale_wizard,fleet_management.model_fleet_vehicle_sale_wizard,base.group_user,1,1,1,1

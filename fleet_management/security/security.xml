@@ -16,4 +16,11 @@
         <field name="category_id" ref="module_category_fleet_management"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
+
+    <record id="fleet_vehicle_driver_rule" model="ir.rule">
+        <field name="name">Fleet Driver: See Own Vehicles Only</field>
+        <field name="model_id" ref="fleet_management.model_fleet_vehicle"/>
+        <field name="groups" eval="[(4, ref('fleet_management.group_fleet_driver'))]"/>
+        <field name="domain_force">[('driver_id.user_id', '=', user.id)]</field>
+    </record>
 </odoo>
