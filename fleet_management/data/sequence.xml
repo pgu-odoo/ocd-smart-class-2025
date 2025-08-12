@@ -1,0 +1,9 @@
+<odoo>
+    <record id="seq_fleet_vehicle_rental" model="ir.sequence">
+        <field name="name">Fleet Vehicle Rental</field>
+        <field name="code">fleet.vehicle.rental</field>
+        <field name="prefix">RENT/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_fleet_vehicle_list" model="ir.ui.view">
+       <field name="name">fleet.vehicle.list</field>
+       <field name="model">fleet.vehicle</field>
+       <field name="arch" type="xml">
+           <list>
+               <field name="name"/>
+               <field name="license_plate"/>
+               <field name="brand"/>
+               <field name="model"/>
+               <field name="status"/>
+               <field name="odometer_km"/>
+               <field name="driver_id"/>
+           </list>
+       </field>
+    </record>
+
+    <record id="view_fleet_vehicle_form" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="arch" type="xml">
+            <form string="Fleet Vehicles">
+                <header>
+                    <button name="action_mark_sold"
+                        type="object"
+                        string="Mark as Sold"
+                        class="btn-primary"
+                        invisible="status == 'sold'"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="action_open_related_orders"
+                                type="object" icon="fa-bars"
+                                invisible="0">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">
+                                    Orders
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <div class="oe_title">
+                            <span>Vehicle Name</span>
+                            <h1><field name="name" /></h1>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                        </div>
+                        <group>
+                            <div><field name="image" widget="image" class="oe_avatar" /></div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Information" name="info">
+                            <group>
+                                <group string="Details">
+                                    <field name="brand" />
+                                    <field name="model" />
+                                    <field name="license_plate" />
+                                    <field name="driver_id" />
+                                    <field name="vehicle_age_years"/>
+                                    <field name="daily_rate"/>
+                                </group>
+                                <group string="Maintenance">
+                                    <field name="purchase_date" />
+                                    <field name="last_service_date" />
+                                    <field name="service_interval_days" />
+                                    <field name="odometer_km" />
+                                    <field name="maintenance_cost" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Search View -->
+    <record id="view_fleet_vehicle_search" model="ir.ui.view">
+        <field name="name">fleet.vehicle.search</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="arch" type="xml">
+            <search string="Fleet Vehicles">
+                <filter name="name" string="Vehicle Name"/>
+                <filter name="high_mileage" string="High Mileage" domain="[('odometer_km', '>=', 100000)]"/>
+                <field name="name"/>
+                <field name="brand"/>
+                <group expand="0" string="Group By">
+                    <filter string="Brand" name="brand" domain="" context="{'group_by':'brand'}"/>
+                </group>
+            </search>
+        </field>
+     </record>
+
+
+    <!-- Windows Action -->
+    <record id="action_fleet_vehicle" model="ir.actions.act_window">
+        <field name="name">Fleet Vehicles</field>
+        <field name="res_model">fleet.vehicle</field>
+        <field name="view_mode">list,form,search</field>
+    </record>
+    <!-- Menu -->
+    <menuitem id="menu_fleet_management_root" name="Fleet Management" sequence="10" web_icon="fleet_management,static/description/icon.png"/>
+    <menuitem id="menu_fleet_vehicles" name="Fleet Vehicles" parent="menu_fleet_management_root" action="action_fleet_vehicle"/>
+    <menuitem id="fleet_vehicle_rental_menu" name="Rental Orders" parent="menu_fleet_management_root" action="fleet_vehicle_rental_action" sequence="1"/>
+</odoo>

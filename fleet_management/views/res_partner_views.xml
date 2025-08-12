@@ -1,0 +1,16 @@
+<odoo>
+    <record id="view_partner_form_inherit_driver" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.driver</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Driver Info">
+                    <field name="is_driver"/>
+                    <field name="vehicle_ids" widget="many2many_tags">
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
